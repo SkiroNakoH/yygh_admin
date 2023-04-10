@@ -1,7 +1,7 @@
 {
-  "name": "vue-admin-template",
-  "version": "4.4.0",
-  "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
+  "name": "yygh_admin",
+  "version": "1.0.0",
+  "description": "商医通管理系统",
   "author": "Pan <panfree23@gmail.com>",
   "scripts": {
     "dev": "vue-cli-service serve",
