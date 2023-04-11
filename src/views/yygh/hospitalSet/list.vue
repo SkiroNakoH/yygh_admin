@@ -10,11 +10,14 @@
             <el-form-item>
                 <el-button type="primary" @click="fetchData()">查询</el-button>
                 <el-button type="danger" @click="clearQuery()">清空</el-button>
+                <el-button type="info" @click="batchDeleteByIds()">批量删除</el-button>
             </el-form-item>
         </el-form>
 
-        <el-table v-loading="listLoading" :data="list" element-loading-text="数据加载中" border fit highlight-current-row>
-
+        <el-table v-loading="listLoading" :data="list" @selection-change="getIds" element-loading-text="数据加载中" border fit
+            highlight-current-row>
+            <el-table-column type="selection" width="55">
+            </el-table-column>
             <el-table-column label="序号" width="70" align="center">
                 <template slot-scope="scope">
                     {{ (page - 1) * size + scope.$index + 1 }}
@@ -51,9 +54,8 @@
             </el-table-column>
         </el-table>
         <div class="block">
-            <span class="demonstration">完整功能</span>
-            <el-pagination @current-change="fetchData" :current-page="page" :page-sizes="[100, 200, 300, 400]"
-                :page-size="size" layout="total, prev, pager, next, jumper" :total="total">
+            <el-pagination @current-change="fetchData" :current-page="page" :page-size="size" 
+                style="padding: 30px 0; text-align: right;" layout="total, prev, pager, next, jumper" :total="total">
             </el-pagination>
         </div>
     </div>
@@ -70,7 +72,8 @@ export default {
             page: 1,
             size: 3,
             total: 0,
-            hosptialSetQuery: {}
+            hosptialSetQuery: {},
+            idList: []
         }
     },
     created() {
@@ -112,12 +115,34 @@ export default {
             hosptialSet.updateStatus(id, status).then(response => {
                 if (status = 0) {
                     this.$message.success("锁定成功");
-                }else {
+                } else {
                     this.$message.success("解锁成功");
                 }
                 //重载页面
                 this.fetchData(this.page);
             })
+        },
+        //获取选中的id
+        getIds(val) {
+            //清空上次点击数据
+            this.idList = [];
+
+            for (let i in val) {
+                this.idList.push(val[i].id);
+            }
+        },
+        //根据id批量删除医院
+        batchDeleteByIds() {
+            if (this.idList.length > 0) {
+                hosptialSet.batchDeleteByIds(this.idList).then(resopnse => {
+                    //重载页面
+                    this.fetchData(this.page);
+
+                    this.$message.success("批量删除成功");
+                });
+            } else {
+                this.$message.error("未选中任何行");
+            }
         }
     }
 }

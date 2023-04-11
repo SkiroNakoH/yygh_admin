@@ -48,5 +48,13 @@ export default {
       url: `${API}/updateStatus/${id}/${status}`,
       method: 'put'
     })
-  }
+  },
+  //批量删除
+  batchDeleteByIds(data){
+    return request({
+      url: `${API}/batchDeleteByIds`,
+      method: 'delete',
+      data
+    })
+  },
 }
