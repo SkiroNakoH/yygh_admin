@@ -37,7 +37,7 @@
 
             <el-table-column label="操作" width="200" align="center">
                 <template slot-scope="scope">
-                    <router-link :to="'/yygh/hospset/edit/' + scope.row.id">
+                    <router-link :to="'/yygh/hospitalSet/edit/' + scope.row.id">
                         <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
                     </router-link>
                     <el-button type="danger" size="mini" icon="el-icon-delete"

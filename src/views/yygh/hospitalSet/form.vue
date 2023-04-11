@@ -50,25 +50,54 @@ export default {
             }
         }
     },
+    created() {
+        this.hospset.id = this.$route.params.id;
+        if (this.hospset.id) {
+            this.getById(this.hospset.id);
+        }
 
+    },
     methods: {
+        //表单校验
         saveOrUpdate(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     //禁用保存按钮
                     this.saveBtnDisabled = true;
+                    if(this.hospset.id){
+                        this.updateById();
+                    }else{
+                        this.insert();
+                    }
 
-                    this.insert();
+                    //保存出错，开启保存按钮
+                    this.saveBtnDisabled = false;
                 }
             });
 
         },
-
         // 新增
         insert() {
-            hosptialSet.insert(this.hospset);
+            hosptialSet.insert(this.hospset).then((response) => {
+                this.$message.success("添加成功")
+            });
 
             //跳转页面 => 路由跳转
+            this.$router.push({ path: '/yygh/hospitalSet/list' });
+        },
+        //根据id查询
+        getById(id) {
+            hosptialSet.getById(id).then(response => {
+                this.hospset = response.data.hospitalSet;
+            })
+        },
+        //修改
+        updateById(){
+            hosptialSet.updateById(this.hospset).then((response)=> {
+                this.$message.success("修改成功");
+            })
+
+            //路由跳转
             this.$router.push({ path: '/yygh/hospitalSet/list' });
         }
 

@@ -27,4 +27,18 @@ export default {
       data
     })
   },
+  //根据id查询
+  getById(id){
+    return request({
+      url: `${API}/${id}`,
+      method: 'get'
+    })
+  },
+  updateById(data){
+    return request({
+      url: `${API}/updateById`,
+      method: 'put',
+      data
+    })
+  }
 }

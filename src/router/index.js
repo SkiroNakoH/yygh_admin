@@ -70,6 +70,12 @@ export const constantRoutes = [
         path: 'insert',
         component: () => import('@/views/yygh/hospitalSet/form'),
         meta: { title: '医院新增', icon: 'table' }
+      },
+      {
+        path: 'edit/:id',
+        component: () => import('@/views/yygh/hospitalSet/form'),
+        meta: { title: '医院修改', icon: 'table'},
+        hidden: true
       }
     ]
   },
