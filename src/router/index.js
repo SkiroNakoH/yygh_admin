@@ -65,6 +65,11 @@ export const constantRoutes = [
         path: 'list',
         component: () => import('@/views/yygh/hospitalSet/list'),
         meta: { title: '医院列表', icon: 'table' }
+      },
+      {
+        path: 'add',
+        component: () => import('@/views/yygh/hospitalSet/form'),
+        meta: { title: '医院新增', icon: 'table' }
       }
     ]
   },
