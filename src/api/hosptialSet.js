@@ -34,11 +34,19 @@ export default {
       method: 'get'
     })
   },
+  //修改
   updateById(data){
     return request({
       url: `${API}/updateById`,
       method: 'put',
       data
+    })
+  },
+  //修改状态
+  updateStatus(id,status){
+    return request({
+      url: `${API}/updateStatus/${id}/${status}`,
+      method: 'put'
     })
   }
 }
