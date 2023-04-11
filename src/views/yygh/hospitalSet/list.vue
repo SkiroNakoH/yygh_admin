@@ -1,27 +1,54 @@
 <template>
     <div class="app-container">
-        <el-table :data="list" style="width: 100%">
-            <el-table-column prop="hosname" label="医院名称" width="180">
-            </el-table-column>
-            <el-table-column prop="hoscode" label="医院编号" width="180">
-            </el-table-column>
-            <el-table-column prop="contactsName" label="联系人姓名" width="180">
-            </el-table-column>
-            <el-table-column prop="contactsPhone" label="联系人手机" width="180">
-            </el-table-column>
-            <el-table-column label="操作">
+        <el-form :inline="true" :model="hosptialSetQuery" class="demo-form-inline">
+            <el-form-item label="医院名称">
+                <el-input v-model="hosptialSetQuery.hosname" placeholder="医院名称"></el-input>
+            </el-form-item>
+            <el-form-item label="医院编号">
+                <el-input v-model="hosptialSetQuery.hoscode" placeholder="医院编号"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="fetchData()">查询</el-button>
+                <el-button type="danger" @click="clearQuery()">清空</el-button>
+            </el-form-item>
+        </el-form>
+
+        <el-table v-loading="listLoading" :data="list" element-loading-text="数据加载中" border fit highlight-current-row>
+
+            <el-table-column label="序号" width="70" align="center">
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    {{ (page - 1) * size + scope.$index + 1 }}
+                </template>
+            </el-table-column>
+
+            <el-table-column prop="hosname" label="医院名称" width="180" />
+
+            <el-table-column prop="hoscode" label="医院编号" width="160" />
+
+            <el-table-column prop="apiUrl" label="地址" width="200" />
+
+            <el-table-column prop="contactsName" label="联系人" />
+
+            <el-table-column prop="status" label="状态">
+                <template slot-scope="scope">
+                    {{ scope.row.status === 1 ? '可用' : '不可用' }}
+                </template>
+            </el-table-column>
+
+            <el-table-column label="操作" width="200" align="center">
+                <template slot-scope="scope">
+                    <router-link :to="'/yygh/hospset/edit/' + scope.row.id">
+                        <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
+                    </router-link>
+                    <el-button type="danger" size="mini" icon="el-icon-delete"
+                        @click="removeDataById(scope.row.id)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-
         <div class="block">
             <span class="demonstration">完整功能</span>
-            <el-pagination @current-change="fetchData"
-                :current-page="page" :page-sizes="[100, 200, 300, 400]" :page-size="size"
-                layout="total, prev, pager, next, jumper" :total="total">
+            <el-pagination @current-change="fetchData" :current-page="page" :page-sizes="[100, 200, 300, 400]"
+                :page-size="size" layout="total, prev, pager, next, jumper" :total="total">
             </el-pagination>
         </div>
     </div>
@@ -45,6 +72,11 @@ export default {
         this.fetchData()
     },
     methods: {
+        //清空查询条件
+        clearQuery(){
+            this.hosptialSetQuery = {};
+        },
+        //分页查询
         fetchData(page = 1) { //ES6 page值未分配
             this.page = page;
 
