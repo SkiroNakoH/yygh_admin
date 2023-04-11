@@ -72,8 +72,22 @@ export default {
         this.fetchData()
     },
     methods: {
+        //根据id删除
+        removeDataById(id) {
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                hosptialSet.removeById(id) //根据id删除
+                .then((response) => {
+                    this.$message.success("删除成功");
+                    this.fetchData();
+                });
+            }).catch(() => { });
+        },
         //清空查询条件
-        clearQuery(){
+        clearQuery() {
             this.hosptialSetQuery = {};
         },
         //分页查询

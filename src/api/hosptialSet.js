@@ -10,5 +10,11 @@ export default {
       method: 'get',
       params 
     })
+  },
+  removeById(id){
+    return request({
+      url: `${API}/${id}`,
+      method: 'delete'
+    })
   }
 }
