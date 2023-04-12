@@ -79,7 +79,21 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/yygh/dict',
+    component: Layout,
+    redirect: '/yygh/dict/list',
+    alwaysShow: true,
+    meta: { title: '数据字典管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: '数据字典',
+        component: () => import('@/views/yygh/dict/list'),
+        meta: { title: '数据字典', icon: 'table' }
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
