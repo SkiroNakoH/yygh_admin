@@ -160,6 +160,13 @@
             resetData(){
                 this.searchObj = {};
                 this.fetchData(this.page);
+            },
+            //上限和下线
+            updateStatus(id,status){
+                hospital.updateStatus(id,status)
+                .then(response=>{
+                    this.fetchData(this.page);
+                })
             }
         }
     }

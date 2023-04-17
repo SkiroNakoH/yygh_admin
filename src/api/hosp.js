@@ -10,5 +10,12 @@ export default {
             method: 'get',
             params
         })
+    },
+    //上线或下线
+    updateStatus(id,status){
+        return request({
+            url: `${API}/updateStatus/${id}/${status}`,
+            method: 'put'
+        })
     }
 }
