@@ -8,8 +8,13 @@ export default {
         return request({
             url: `${API}/findListByParentId/${parentId}`,
             method: 'get'
-
         })
-    }
+    },
+    findDictByParentCode(parentCode) {
+        return request({
+            url: `${API}/findDictByParentCode/${parentCode}`,
+            method: 'get'
+        })
+    },
 }
 

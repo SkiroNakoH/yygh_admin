@@ -59,6 +59,7 @@ export const constantRoutes = [
     path: '/yygh/hospitalSet',
     component: Layout,
     redirect: '/yygh/hospitalSet/list',
+    alwaysShow: true,
     meta: { title: '医院信息管理', icon: 'el-icon-s-help' },
     children: [
       {
@@ -85,6 +86,7 @@ export const constantRoutes = [
     redirect: '/yygh/dict/list',
     alwaysShow: true,
     meta: { title: '数据字典管理', icon: 'example' },
+    alwaysShow: true,
     children: [
       {
         path: 'list',
@@ -92,6 +94,21 @@ export const constantRoutes = [
         component: () => import('@/views/yygh/dict/list'),
         meta: { title: '数据字典', icon: 'table' }
       }
+    ]
+  },
+  {
+    path: '/yygh/hospital',
+    component: Layout,
+    redirect: '/yygh/hospital/list',
+    meta: { title: '医院信息', icon: 'el-icon-s-help' },
+    alwaysShow: true,
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/yygh/hospital/list'),
+        meta: { title: '医院列表', icon: 'table' }
+      },
+      
     ]
   },
   {
