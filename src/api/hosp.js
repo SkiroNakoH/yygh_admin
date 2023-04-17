@@ -17,5 +17,12 @@ export default {
             url: `${API}/updateStatus/${id}/${status}`,
             method: 'put'
         })
+    },
+    //医院详情
+    getHospById(id){
+        return request({
+            url: `${API}/getHospById/${id}`,
+            method: 'get'
+        })
     }
 }

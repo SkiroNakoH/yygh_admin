@@ -108,7 +108,12 @@ export const constantRoutes = [
         component: () => import('@/views/yygh/hospital/list'),
         meta: { title: '医院列表', icon: 'table' }
       },
-      
+      {
+        path: 'show/:id',
+        component: () => import('@/views/yygh/hospital/show'),
+        meta: { title: '医院详情', noCache: true },
+        hidden: true
+      }
     ]
   },
   {
