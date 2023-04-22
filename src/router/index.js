@@ -123,6 +123,20 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/user/userInfo',
+    component: Layout,
+    redirect: '/user/userInfo/list',
+    alwaysShow: true,
+    meta: { title: '用户信息管理', icon: 'table' },
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/yygh/userInfo/list'),
+        meta: { title: '用户列表', icon: 'table' }
+      },
+    ]
+  },
+  {
     path: '/form',
     component: Layout,
     children: [
