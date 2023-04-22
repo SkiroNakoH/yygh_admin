@@ -134,6 +134,12 @@ export const constantRoutes = [
         component: () => import('@/views/yygh/userInfo/list'),
         meta: { title: '用户列表', icon: 'table' }
       },
+      {
+        path: 'show/:id',
+        component: () => import('@/views/yygh/userInfo/show'),
+        meta: { title: '用户详情', noCache: true  },
+        hidden: true
+      },
     ]
   },
   {

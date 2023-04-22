@@ -17,6 +17,12 @@ export default {
             method: 'get'
         })
     },
+    getById(id) {
+        return request({
+            url: `${API}/getById/${id}`,
+            method: 'get'
+        })
+    },
     
 }
 
