@@ -101,7 +101,9 @@ export default {
         // 重置查询表单
         resetData() {
             console.log('重置查询表单')
-            this.searchObj = {}
+            this.searchObj = {
+                authStatus: 1
+            }
             this.fetchData()
         },
         //审批认证
