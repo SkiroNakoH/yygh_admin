@@ -14,12 +14,18 @@ export default {
     updateStatus(id,status) {
         return request({
             url: `${API}/updateStatus/${id}/${status}`,
-            method: 'get'
+            method: 'put'
         })
     },
     getById(id) {
         return request({
             url: `${API}/getById/${id}`,
+            method: 'get'
+        })
+    },
+    approval(id,authStatus) {
+        return request({
+            url: `${API}/approval/${id}/${authStatus}`,
             method: 'get'
         })
     },

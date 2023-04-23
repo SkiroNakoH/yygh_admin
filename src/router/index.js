@@ -75,7 +75,7 @@ export const constantRoutes = [
       {
         path: 'edit/:id',
         component: () => import('@/views/yygh/hospitalSet/form'),
-        meta: { title: '医院修改', icon: 'table'},
+        meta: { title: '医院修改', icon: 'table' },
         hidden: true
       }
     ]
@@ -137,9 +137,15 @@ export const constantRoutes = [
       {
         path: 'show/:id',
         component: () => import('@/views/yygh/userInfo/show'),
-        meta: { title: '用户详情', noCache: true  },
+        meta: { title: '用户详情', noCache: true },
         hidden: true
       },
+      {
+        path: 'authList',
+        name: '认证审批列表',
+        component: () => import('@/views/yygh/userInfo/authList'),
+        meta: { title: '认证审批列表', icon: 'table' }
+      }
     ]
   },
   {
