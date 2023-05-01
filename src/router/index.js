@@ -149,6 +149,20 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/yygh/statistics',
+    component: Layout,
+    redirect: '/yygh/statistics/order',
+    meta: { title: '统计管理', icon: 'el-icon-s-help' },
+    alwaysShow: true,
+    children: [
+      {
+        path: 'order',
+        component: () => import('@/views/yygh/statistics/order'),
+        meta: { title: '预约统计', icon: 'table' }
+      },
+    ]
+  },
+  {
     path: '/form',
     component: Layout,
     children: [
